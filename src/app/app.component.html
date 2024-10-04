@@ -1,2 +1,6 @@
-<app-header></app-header>
-<app-contacts></app-contacts>
+<app-header (selectedFeatureEvent)="switchView($event)"></app-header>
+<div class="pull_left">
+    @if (selectedFeature === "documents") {<app-documents ></app-documents>}
+    @if (selectedFeature === "messages") {<app-messages-list></app-messages-list>}
+    @if (selectedFeature === "contacts") {<app-contacts></app-contacts>}
+</div>
