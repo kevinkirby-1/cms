@@ -3,14 +3,16 @@ import { Message } from './message.model';
 import { MOCKMESSAGES } from './MOCKMESSAGES';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MessagesService {
-  messageChangedEvent = new EventEmitter<Message[]>;
+  messageChangedEvent = new EventEmitter<Message[]>();
 
   messages: Message[] = [];
 
-  constructor() {this.messages = MOCKMESSAGES;}
+  constructor() {
+    this.messages = MOCKMESSAGES;
+  }
 
   getMessages() {
     return this.messages.slice();

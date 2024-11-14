@@ -1,6 +1,6 @@
 <cms-header (selectedFeatureEvent)="switchView($event)"></cms-header>
 <div class="pull_left">
-    @if (selectedFeature === "documents") {<cms-documents ></cms-documents>}
-    @if (selectedFeature === "messages") {<cms-message-list></cms-message-list>}
-    @if (selectedFeature === "contacts") {<cms-contacts></cms-contacts>}
+  @if (selectedFeature === "documents") {<cms-documents></cms-documents>} @if
+  (selectedFeature === "messages") {<cms-message-list></cms-message-list>} @if
+  (selectedFeature === "contacts") {<cms-contacts></cms-contacts>}
 </div>

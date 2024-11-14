@@ -3,14 +3,16 @@ import { Contact } from './contact.model';
 import { MOCKCONTACTS } from './MOCKCONTACTS';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ContactsService {
-  contactSelectedEvent = new EventEmitter<Contact>;
+  contactSelectedEvent = new EventEmitter<Contact>();
 
   private contacts: Contact[] = [];
 
-  constructor() {this.contacts = MOCKCONTACTS; }
+  constructor() {
+    this.contacts = MOCKCONTACTS;
+  }
 
   getContacts(): Contact[] {
     return this.contacts.slice();
@@ -24,5 +26,4 @@ export class ContactsService {
     }
     return undefined;
   }
-
 }

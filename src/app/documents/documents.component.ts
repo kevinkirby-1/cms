@@ -4,7 +4,7 @@ import { DocumentsService } from './documents.service';
 @Component({
   selector: 'cms-documents',
   templateUrl: './documents.component.html',
-  styleUrl: './documents.component.css'
+  styleUrl: './documents.component.css',
 })
 export class DocumentsComponent {
   selectedDocument: Document | undefined;
