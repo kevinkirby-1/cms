@@ -14,6 +14,11 @@ export class ContactListComponent {
 
   ngOnInit() {
     this.contacts = this.contactsService.getContacts();
+    this.contactsService.contactChangedEvent.subscribe(
+      (contacts: Contact[]) => {
+        this.contacts = contacts;
+      }
+    );
   }
 
   onSelected(contact: Contact) {
