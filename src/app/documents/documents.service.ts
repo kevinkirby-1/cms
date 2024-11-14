@@ -3,15 +3,16 @@ import { Document } from './document.model';
 import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class DocumentService {
-
-  documentSelectedEvent = new EventEmitter<Document>;
+export class DocumentsService {
+  documentSelectedEvent = new EventEmitter<Document>();
 
   private documents: Document[] = [];
 
-  constructor() {this.documents = MOCKDOCUMENTS}
+  constructor() {
+    this.documents = MOCKDOCUMENTS;
+  }
 
   getDocuments(): Document[] {
     return this.documents.slice();
@@ -25,5 +26,4 @@ export class DocumentService {
     }
     return undefined;
   }
-
 }

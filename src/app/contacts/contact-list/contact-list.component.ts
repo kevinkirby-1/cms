@@ -1,28 +1,22 @@
 import { Component } from '@angular/core';
 import { Contact } from '../contact.model';
-import { CommonModule } from '@angular/common';
-import { ContactItemComponent } from "../contact-item/contact-item.component";
-import { ContactService } from '../contact.service';
+import { ContactsService } from '../contacts.service';
 
 @Component({
-  selector: 'app-contact-list',
-  standalone: true,
-  imports: [CommonModule, ContactItemComponent],
+  selector: 'cms-contact-list',
   templateUrl: './contact-list.component.html',
-  styleUrl: './contact-list.component.css'
+  styleUrl: './contact-list.component.css',
 })
 export class ContactListComponent {
-
   contacts: Contact[] = [];
 
-  constructor(private contactService: ContactService) {}
+  constructor(private contactsService: ContactsService) {}
 
   ngOnInit() {
-    this.contacts = this.contactService.getContacts()
+    this.contacts = this.contactsService.getContacts();
   }
 
   onSelected(contact: Contact) {
-    this.contactService.contactSelectedEvent.emit(contact);
+    this.contactsService.contactSelectedEvent.emit(contact);
   }
-
 }

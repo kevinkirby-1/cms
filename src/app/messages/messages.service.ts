@@ -5,7 +5,7 @@ import { MOCKMESSAGES } from './MOCKMESSAGES';
 @Injectable({
   providedIn: 'root'
 })
-export class MessageService {
+export class MessagesService {
   messageChangedEvent = new EventEmitter<Message[]>;
 
   messages: Message[] = [];
@@ -29,5 +29,4 @@ export class MessageService {
     this.messages.push(message);
     this.messageChangedEvent.emit(this.messages.slice());
   }
-
 }

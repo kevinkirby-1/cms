@@ -1,27 +1,22 @@
 import { Component } from '@angular/core';
-import { ContactListComponent } from "./contact-list/contact-list.component";
-import { ContactDetailComponent } from "./contact-detail/contact-detail.component";
 import { Contact } from './contact.model';
-import { ContactService } from './contact.service';
+import { ContactsService } from './contacts.service';
 
 @Component({
-  selector: 'app-contacts',
-  standalone: true,
-  imports: [ContactListComponent, ContactDetailComponent],
+  selector: 'cms-contacts',
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.css'
 })
 export class ContactsComponent {
-  selectedContact: Contact | undefined;
+  selectedContact: Contact;
 
-  constructor(private contactService: ContactService) {}
+  constructor(private contactsService: ContactsService) {}
 
   ngOnInit() {
-    this.contactService.contactSelectedEvent.subscribe(
+    this.contactsService.contactSelectedEvent.subscribe(
       (contact: Contact) => {
         this.selectedContact = contact;
       }
     );
   }
-
 }

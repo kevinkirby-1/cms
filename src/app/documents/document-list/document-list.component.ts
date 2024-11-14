@@ -1,28 +1,22 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { DocumentItemComponent } from "../document-item/document-item.component";
+import { Component } from '@angular/core';
 import { Document } from '../document.model';
-import { CommonModule } from '@angular/common';
-import { DocumentService } from '../document.service';
-
+import { DocumentsService } from '../documents.service';
 
 @Component({
-  selector: 'app-document-list',
-  standalone: true,
-  imports: [CommonModule, DocumentItemComponent],
+  selector: 'cms-document-list',
   templateUrl: './document-list.component.html',
   styleUrl: './document-list.component.css'
 })
 export class DocumentListComponent {
-
   documents: Document[] = [];
 
-  constructor(private documentService: DocumentService) {}
+  constructor(private documentsService: DocumentsService) {}
 
   ngOnInit() {
-    this.documents = this.documentService.getDocuments();
+    this.documents = this.documentsService.getDocuments();
   }
 
   onSelectedDocument(document: Document) {
-    this.documentService.documentSelectedEvent.emit(document);
+    this.documentsService.documentSelectedEvent.emit(document);
   }
 }

@@ -1,10 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { DropdownDirective } from '../shared/dropdown.directive';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [DropdownDirective],
+  selector: 'cms-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -14,4 +11,5 @@ export class HeaderComponent {
   onSelected(selectedEvent: string) {
     this.selectedFeatureEvent.emit(selectedEvent)
   }
+
 }

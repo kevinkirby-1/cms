@@ -1,27 +1,21 @@
 import { Component } from '@angular/core';
-import { DocumentListComponent } from "./document-list/document-list.component";
-import { DocumentDetailComponent } from "./document-detail/document-detail.component";
-import { Document } from './document.model';
-import { DocumentService } from './document.service';
+import { DocumentsService } from './documents.service';
 
 @Component({
-  selector: 'app-documents',
-  standalone: true,
-  imports: [DocumentListComponent, DocumentDetailComponent],
+  selector: 'cms-documents',
   templateUrl: './documents.component.html',
   styleUrl: './documents.component.css'
 })
 export class DocumentsComponent {
   selectedDocument: Document | undefined;
 
-  constructor(private documentService: DocumentService) {}
+  constructor(private documentsService: DocumentsService) {}
 
   ngOnInit() {
-    this.documentService.documentSelectedEvent.subscribe(
+    this.documentsService.documentSelectedEvent.subscribe(
       (document: Document) => {
         this.selectedDocument = document;
       }
     );
   }
-
 }
