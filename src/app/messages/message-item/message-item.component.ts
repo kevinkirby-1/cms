@@ -9,7 +9,7 @@ import { Contact } from '../../contacts/contact.model';
   styleUrl: './message-item.component.css',
 })
 export class MessageItemComponent {
-  @Input() message: Message = new Message('', '', '', '');
+  @Input() message: Message;
 
   messageSender: string;
 

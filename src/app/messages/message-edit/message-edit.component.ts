@@ -8,7 +8,7 @@ import { Message } from '../message.model';
   styleUrl: './message-edit.component.css',
 })
 export class MessageEditComponent {
-  currentSender: string = '19';
+  currentSender: number = 19;
 
   @ViewChild('subject', { static: false }) subjectInputRef: ElementRef;
   @ViewChild('msgText', { static: false }) msgTextInputRef: ElementRef;
