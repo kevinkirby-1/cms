@@ -22,7 +22,7 @@ export class DocumentsService {
     return this.documents.slice();
   }
 
-  getDocument(id: number): Document | undefined {
+  getDocument(id: number): Document {
     for (let document of this.documents) {
       if (document.id == id) {
         return document;
@@ -38,10 +38,10 @@ export class DocumentsService {
 
     const pos = this.documents.indexOf(document);
     if (pos < 0) {
-      return
+      return;
     }
 
-    this.documents.splice(pos,1)
+    this.documents.splice(pos, 1);
     const documentsListClone = this.documents.slice();
     this.documentListChangedEvent.next(documentsListClone);
   }
