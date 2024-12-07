@@ -13,7 +13,7 @@ export class MessageListComponent {
   constructor(private messagesService: MessagesService) {}
 
   ngOnInit() {
-    this.messages = this.messagesService.getMessages();
+    this.messagesService.getMessages();
     this.messagesService.messageChangedEvent.subscribe(
       (messages: Message[]) => {
         this.messages = messages;

@@ -1,4 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { Message } from './message.model';
 import { MOCKMESSAGES } from './MOCKMESSAGES';
 
@@ -7,18 +9,49 @@ import { MOCKMESSAGES } from './MOCKMESSAGES';
 })
 export class MessagesService {
   messageChangedEvent = new EventEmitter<Message[]>();
-
   messages: Message[] = [];
+  maxMessageId: number;
 
-  constructor() {
-    this.messages = MOCKMESSAGES;
+  constructor(private http: HttpClient) {
+    // this.messages = MOCKMESSAGES;
   }
 
   getMessages() {
-    return this.messages.slice();
+    this.http
+      .get('https://wdd430-cms-3fbeb-default-rtdb.firebaseio.com/messages.json')
+      .subscribe(
+        (messages: Message[]) => {
+          this.messages = messages;
+          this.maxMessageId = this.getMaxId();
+          this.messages.sort();
+          const messagesClone = messages.slice();
+          this.messageChangedEvent.next(messagesClone);
+        },
+        (error: any) => {
+          console.log(error.message);
+        }
+      );
   }
 
-  getMessage(id: string) {
+  storeMessages() {
+    const messagesString = JSON.stringify(this.messages);
+    this.http
+      .put(
+        'https://wdd430-cms-3fbeb-default-rtdb.firebaseio.com/messages.json',
+        messagesString
+      )
+      .subscribe(
+        () => {
+          const messagesClone = this.messages.slice();
+          this.messageChangedEvent.next(messagesClone);
+        },
+        (error: any) => {
+          console.log(error.message);
+        }
+      );
+  }
+
+  getMessage(id: number) {
     for (let message of this.messages) {
       if (message.id == id) {
         return message;
@@ -29,6 +62,18 @@ export class MessagesService {
 
   addMessage(message: Message) {
     this.messages.push(message);
-    this.messageChangedEvent.emit(this.messages.slice());
+    this.storeMessages();
+  }
+
+  getMaxId(): number {
+    let maxId = 0;
+
+    for (let message of this.messages) {
+      const currentId = message.id;
+      if (currentId > maxId) {
+        maxId = currentId;
+      }
+    }
+    return maxId;
   }
 }

@@ -24,7 +24,6 @@ export class DocumentDetailComponent {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.document = this.documentService.getDocument(params['id']);
-      console.log(this.document.url);
     });
 
     this.nativeWindow = this.windRefService.getNativeWindow();
